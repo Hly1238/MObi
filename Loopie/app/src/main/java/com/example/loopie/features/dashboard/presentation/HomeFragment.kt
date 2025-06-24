@@ -2,10 +2,12 @@ package com.example.loopie.features.dashboard.presentation
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.loopie.AdapterClass
@@ -18,6 +20,7 @@ class HomeFragment : Fragment() {
     lateinit var imageList: Array<Int>
     lateinit var titleList: Array<String>
     private lateinit var adapter: AdapterClass
+    private lateinit var button: Button
 
 
 
@@ -67,11 +70,30 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
+        button = view.findViewById(R.id.recyclerView2)
+
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
+        dataList = ArrayList()
+//        getData()
+        adapter = AdapterClass(dataList) // Tạo adapter một lần
+        recyclerView.adapter = adapter
+        viewModel.postData.observe(viewLifecycleOwner) { data ->
+            dataList.clear()
+            dataList.addAll(data) // Cập nhật dataList
+            adapter.notifyDataSetChanged() // Cập nhật giao diện
+            Log.d("HomeFragment", "Data updated, size: ${dataList.size}")
 
-        // Gọi getData để điền dữ liệu
-        getData()
+        }
+
+        // Gọi hàm addPostData
+        button.setOnClickListener {
+            viewModel.addPostData()
+            Log.d("TEST","TEST")
+
+        }
+
 
         return view
     }

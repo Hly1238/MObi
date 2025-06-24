@@ -6,16 +6,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.loopie.databinding.ItemLayoutBinding
 
 class AdapterClass(private val dataList:ArrayList<DataClass>) : RecyclerView.Adapter<AdapterClass.ViewHolderClass>() {
-    class ViewHolderClass(itemView: View) :  RecyclerView.ViewHolder(itemView) {
-        val rvImage: ImageView = itemView.findViewById(R.id.image)
-        val rvTitle: TextView = itemView.findViewById(R.id.title)
+    class ViewHolderClass(var binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
+
     }
+//    class ViewHolderClasserClass(itemView: View) :  RecyclerView.ViewHolder(itemView) {
+//        val rvImage: ImageView = itemView.findViewById(R.id.image)
+//        val rvTitle: TextView = itemView.findViewById(R.id.title)
+//    }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
-        return ViewHolderClass(itemView)
+//        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)
+//        return ViewHolderClass(itemView)
+        return ViewHolderClass(ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -24,7 +31,7 @@ class AdapterClass(private val dataList:ArrayList<DataClass>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val currentItem = dataList[position]
-        holder.rvImage.setImageResource(currentItem.dataImage)
-        holder.rvTitle.setText(currentItem.dataTitle)
+        holder.binding.image.setImageResource(currentItem.dataImage)
+        holder.binding.title.setText(currentItem.dataTitle)
     }
 }
