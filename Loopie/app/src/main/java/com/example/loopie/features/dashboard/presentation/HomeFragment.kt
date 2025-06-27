@@ -1,5 +1,6 @@
 package com.example.loopie.features.dashboard.presentation
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loopie.AdapterClass
 import com.example.loopie.DataClass
 import com.example.loopie.R
+import com.example.loopie.features.post.presentation.PostPageActivity
 
 class HomeFragment : Fragment() {
     private lateinit var dataList: ArrayList<DataClass>
@@ -89,12 +91,12 @@ class HomeFragment : Fragment() {
 
         // Gọi hàm addPostData
         button.setOnClickListener {
-            viewModel.addPostData()
-            Log.d("TEST","TEST")
+//            viewModel.addPostData()
+//            Log.d("TEST","TEST")
+            val intent = Intent(requireContext(), PostPageActivity::class.java)
+            startActivity(intent)
 
         }
-
-
         return view
     }
 }
