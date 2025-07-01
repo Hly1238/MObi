@@ -59,7 +59,9 @@ class HomeFragment : Fragment() {
             dataList.add(dataClass)
         }
 
-        adapter = AdapterClass(dataList)
+        adapter = AdapterClass(dataList, { postId ->
+            viewModel.toggle()
+        })
         recyclerView.adapter = adapter
     }
 
@@ -79,22 +81,35 @@ class HomeFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         dataList = ArrayList()
 //        getData()
-        adapter = AdapterClass(dataList) // Tạo adapter một lần
-        recyclerView.adapter = adapter
-        viewModel.postData.observe(viewLifecycleOwner) { data ->
-            dataList.clear()
-            dataList.addAll(data) // Cập nhật dataList
-            adapter.notifyDataSetChanged() // Cập nhật giao diện
-            Log.d("HomeFragment", "Data updated, size: ${dataList.size}")
+//        adapter = AdapterClass(dataList,  { postId ->
+//            viewModel.toggle()
+//        })
 
+        adapter = AdapterClass(mutableListOf()) { postId ->
+            viewModel.toggle() // Xử lý click Like
         }
+        // Tạo adapter một lần
+        recyclerView.adapter = adapter
+//        viewModel.postData.observe(viewLifecycleOwner) { data ->
+//            dataList.clear()
+//            dataList.addAll(data) // Cập nhật dataList
+//            adapter.notifyDataSetChanged() // Cập nhật giao diện
+//            Log.d("HomeFragment", "Data updated, size: ${dataList.size}")
+//
+//        }
+        viewModel.postData.observe(viewLifecycleOwner) { data ->
+            adapter.updateData(data) // Cập nhật Adapter
+            Log.d("HomeFragment", "Data updated, size: ${data.size}")
+        }
+
+
 
         // Gọi hàm addPostData
         button.setOnClickListener {
-//            viewModel.addPostData()
+            viewModel.addPostData()
 //            Log.d("TEST","TEST")
-            val intent = Intent(requireContext(), PostPageActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(requireContext(), PostPageActivity::class.java)
+//            startActivity(intent)
 
         }
         return view

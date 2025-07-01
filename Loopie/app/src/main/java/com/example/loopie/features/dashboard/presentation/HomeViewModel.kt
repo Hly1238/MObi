@@ -7,6 +7,7 @@ import com.example.loopie.R
 
 class HomeViewModel : ViewModel() {
     val postData = MutableLiveData<ArrayList<DataClass>>()
+    val test = MutableLiveData<Boolean>(false)
 
     init {
         // Dữ liệu mẫu, sử dụng arrayListOf thay vì arrayOf
@@ -22,5 +23,10 @@ class HomeViewModel : ViewModel() {
         val currentList = postData.value ?: arrayListOf() // Nếu null, tạo ArrayList mới
         currentList.add(DataClass(R.drawable.ic_launcher_foreground, "New Post"))
         postData.value = currentList
+    }
+
+    fun toggle() {
+
+        test.value = true
     }
 }
