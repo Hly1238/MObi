@@ -5,6 +5,13 @@
         <item name="android:colorBackground">@color/color_background</item>
 
     </style>
+    <style name="Theme.Loopie" parent="Base.Theme.Loopie">
+    </style>
 
-    <style name="Theme.Loopie" parent="Base.Theme.Loopie" />
+<!--    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">-->
+<!--        <item name="android:background">?attr/colorPrimary</item>-->
+<!--    </style>-->
+
+<!--    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>-->
+
 </resources>

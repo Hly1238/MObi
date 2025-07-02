@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loopie.AdapterClass
 import com.example.loopie.DataClass
 import com.example.loopie.R
+import com.example.loopie.core.utils.ShowSnackbar
 import com.example.loopie.features.post.presentation.PostPageActivity
 
 class HomeFragment : Fragment() {
@@ -106,10 +107,15 @@ class HomeFragment : Fragment() {
 
         // Gọi hàm addPostData
         button.setOnClickListener {
-            viewModel.addPostData()
+//            viewModel.addPostData()
 //            Log.d("TEST","TEST")
 //            val intent = Intent(requireContext(), PostPageActivity::class.java)
 //            startActivity(intent)
+            ShowSnackbar.showCustomSnackbar(
+                view = requireView() ,// Sử dụng FrameLayout (root View) làm anchor view
+                message = "Custom Snackbar Message!",
+                type = 200
+            )
 
         }
         return view
