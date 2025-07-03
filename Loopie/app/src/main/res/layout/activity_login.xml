@@ -62,13 +62,30 @@
         android:layout_margin="16dp"
         android:ems="10"
         android:inputType="text" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to work"
+        android:id="@+id/btnWorkManager"
+        android:layout_below="@id/editText"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click to show snackbar"
+        android:id="@+id/btnShowSnackbar"
+        android:layout_below="@id/btnWorkManager"
+
+        />
 
     <!-- Container để chứa ImageView được thêm động -->
     <LinearLayout
         android:id="@+id/imageContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editText"
+        android:layout_below="@id/btnShowSnackbar"
         android:layout_margin="16dp"
         android:orientation="vertical" />
 

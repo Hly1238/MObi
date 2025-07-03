@@ -17,18 +17,8 @@ object ShowSnackbar {
         try {
             // Create the Snackbar with no default text
             val snackbar = Snackbar.make(view, "", Snackbar.LENGTH_LONG)
-            snackbar.view.updateLayoutParams {
-                when (this) {
-                    is CoordinatorLayout.LayoutParams -> {
-                        gravity = Gravity.TOP
-                    }
-                    is FrameLayout.LayoutParams -> {
-                        gravity = Gravity.TOP
-                    }
-                    else -> {
-                        android.util.Log.w("ShowSnackbar", "Unsupported LayoutParams, defaulting to top")
-                    }
-                }
+            snackbar.view.updateLayoutParams<FrameLayout.LayoutParams> {
+                gravity = Gravity.TOP
             }
 
             // Remove default padding
@@ -37,8 +27,8 @@ object ShowSnackbar {
             binding.textView2.text = message
 
             (snackbar.view as ViewGroup).apply {
-//                findViewById<View>(com.google.android.material.R.id.snackbar_text)?.visibility = View.GONE
-//                addView(binding.root)
+                findViewById<View>(com.google.android.material.R.id.snackbar_text)?.visibility = View.GONE
+                addView(binding.root)
             }
             snackbar.show()
 
